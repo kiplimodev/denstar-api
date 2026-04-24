@@ -1,4 +1,4 @@
-@hostname=http://localhost:3000
+@hostname=https://denstar-api.onrender.com
 @token={{login.response.body.$.token}}
 
 ### Health check
