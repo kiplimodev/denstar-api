@@ -1,0 +1,54 @@
+@hostname=http://localhost:3000
+@token={{login.response.body.$.token}}
+
+### Health check
+GET {{hostname}}/health
+
+### Register
+# @name register
+POST {{hostname}}/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Dennis Kiplimo",
+  "email": "dennis@denstarfitness.com",
+  "password": "password123"
+}
+
+### Login
+# @name login
+POST {{hostname}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "dennis@denstarfitness.com",
+  "password": "password123"
+}
+
+### Get me
+GET {{hostname}}/api/auth/me
+Authorization: Bearer {{token}}
+
+### Add weight entry
+POST {{hostname}}/api/weights
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "weight": 75.5,
+  "unit": "kg",
+  "date": "2026-04-24",
+  "notes": "Morning weight"
+}
+
+### Get all weights
+GET {{hostname}}/api/weights
+Authorization: Bearer {{token}}
+
+### Get stats
+GET {{hostname}}/api/weights/stats
+Authorization: Bearer {{token}}
+
+### Delete weight (replace with real ID)
+DELETE {{hostname}}/api/weights/69ebb5bed47171f93a803988
+Authorization: Bearer {{token}}
